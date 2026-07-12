@@ -7,8 +7,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 
+import { useAuth } from '@/lib/AuthContext';
+
 export default function AuthLogin() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [email, setEmail] = useState('admin@assetflow.com');
   const [password, setPassword] = useState('admin123');
   const [showPw, setShowPw] = useState(false);
@@ -16,18 +19,17 @@ export default function AuthLogin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    setTimeout(() => {
-      if (email && password) {
-        navigate('/');
-      } else {
-        setError('Invalid credentials');
-      }
-      setLoading(false);
-    }, 800);
+    const result = await login(email, password);
+    if (result.success) {
+      navigate('/');
+    } else {
+      setError(result.message || 'Invalid credentials');
+    }
+    setLoading(false);
   };
 
   return (

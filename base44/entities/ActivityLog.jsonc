@@ -1,0 +1,29 @@
+{
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "User ID performing action"
+    },
+    "action": {
+      "type": "string"
+    },
+    "module": {
+      "type": "string"
+    },
+    "details": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "userId",
+    "action",
+    "module",
+    "details",
+    "timestamp"
+  ],
+  "name": "ActivityLog",
+  "type": "object"
+}

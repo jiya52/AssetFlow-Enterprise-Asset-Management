@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { useApp } from '@/contexts/AppContext';
 import PageHeader from '@/components/shared/PageHeader';
 import StatusBadge from '@/components/shared/StatusBadge';
@@ -15,7 +14,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { Plus, ArrowLeftRight, RotateCcw, AlertCircle } from 'lucide-react';
 
 export default function Allocation() {
-  const { assets, setAssets, employees, departments, transfers, setTransfers, addLog, addNotification } = useApp();
+  const { assets, setAssets, employees, transfers, setTransfers, addLog, addNotification } = useApp();
   const { toast } = useToast();
   const [allocDialog, setAllocDialog] = useState(false);
   const [returnDialog, setReturnDialog] = useState(false);
@@ -24,7 +23,6 @@ export default function Allocation() {
   const [returnNotes, setReturnNotes] = useState('');
 
   const allocatedAssets = assets.filter(a => a.status === 'allocated');
-  const availableAssets = assets.filter(a => a.status === 'available');
 
   const handleAllocate = () => {
     const asset = assets.find(a => a.id === allocForm.asset);

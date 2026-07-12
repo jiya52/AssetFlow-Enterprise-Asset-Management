@@ -1,0 +1,76 @@
+{
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "description": "AssetCategory ID"
+    },
+    "assetTag": {
+      "type": "string"
+    },
+    "serialNumber": {
+      "type": "string"
+    },
+    "acquisitionDate": {
+      "type": "string"
+    },
+    "acquisitionCost": {
+      "type": "number"
+    },
+    "condition": {
+      "type": "string",
+      "enum": [
+        "Excellent",
+        "Good",
+        "Fair",
+        "Poor"
+      ]
+    },
+    "location": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "available",
+        "allocated",
+        "reserved",
+        "under_maintenance",
+        "lost",
+        "retired",
+        "disposed"
+      ]
+    },
+    "department": {
+      "type": "string",
+      "description": "Department ID"
+    },
+    "allocatedTo": {
+      "type": "string",
+      "description": "User ID"
+    },
+    "isBookable": {
+      "type": "boolean"
+    },
+    "photo": {
+      "type": "string"
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "name",
+    "category",
+    "assetTag",
+    "status",
+    "condition"
+  ],
+  "name": "Asset",
+  "type": "object"
+}

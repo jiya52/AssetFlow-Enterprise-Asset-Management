@@ -1,0 +1,28 @@
+{
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "count": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "icon"
+  ],
+  "name": "AssetCategory",
+  "type": "object"
+}

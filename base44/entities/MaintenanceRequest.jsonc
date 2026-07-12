@@ -1,0 +1,58 @@
+{
+  "properties": {
+    "asset": {
+      "type": "string",
+      "description": "Asset ID"
+    },
+    "reportedBy": {
+      "type": "string",
+      "description": "User ID"
+    },
+    "issue": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected",
+        "technician_assigned",
+        "in_progress",
+        "resolved"
+      ]
+    },
+    "technician": {
+      "type": "string",
+      "description": "Technician Name or User ID"
+    },
+    "createdDate": {
+      "type": "string"
+    },
+    "resolvedDate": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "asset",
+    "reportedBy",
+    "issue",
+    "priority",
+    "status",
+    "createdDate"
+  ],
+  "name": "MaintenanceRequest",
+  "type": "object"
+}

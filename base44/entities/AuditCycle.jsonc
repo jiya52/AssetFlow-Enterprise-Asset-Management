@@ -1,0 +1,60 @@
+{
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "department": {
+      "type": "string",
+      "description": "Department ID"
+    },
+    "location": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "string"
+    },
+    "endDate": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "planned",
+        "in_progress",
+        "completed",
+        "closed"
+      ]
+    },
+    "auditor": {
+      "type": "string",
+      "description": "User ID of auditor"
+    },
+    "totalAssets": {
+      "type": "integer"
+    },
+    "verified": {
+      "type": "integer"
+    },
+    "missing": {
+      "type": "integer"
+    },
+    "damaged": {
+      "type": "integer"
+    },
+    "progress": {
+      "type": "integer"
+    },
+    "locked": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "name",
+    "department",
+    "status",
+    "startDate",
+    "endDate"
+  ],
+  "name": "AuditCycle",
+  "type": "object"
+}

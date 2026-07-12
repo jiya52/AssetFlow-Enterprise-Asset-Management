@@ -6,7 +6,15 @@ import Topbar from './Topbar';
 import { useApp } from '@/contexts/AppContext';
 
 export default function AppLayout() {
-  const { sidebarOpen } = useApp();
+  const { sidebarOpen, isLoadingData } = useApp();
+
+  if (isLoadingData) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-[#F4F7F9]">
+        <div className="w-8 h-8 border-4 border-[#DCE5EA] border-t-[#0F766E] rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#F4F7F9]">

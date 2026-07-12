@@ -1,0 +1,39 @@
+{
+  "properties": {
+    "asset": {
+      "type": "string",
+      "description": "Asset ID"
+    },
+    "fromEmployee": {
+      "type": "string",
+      "description": "User ID of sender"
+    },
+    "toEmployee": {
+      "type": "string",
+      "description": "User ID of receiver"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "requested",
+        "approved",
+        "reallocated"
+      ]
+    },
+    "requestDate": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "asset",
+    "fromEmployee",
+    "toEmployee",
+    "status",
+    "requestDate"
+  ],
+  "name": "TransferRequest",
+  "type": "object"
+}

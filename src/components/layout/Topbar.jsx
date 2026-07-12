@@ -8,6 +8,8 @@ import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator, DropdownMenuLabel
 } from '@/components/ui/dropdown-menu';
 
+import { useAuth } from '@/lib/AuthContext';
+
 const pathLabels = {
   '/': ['Dashboard'],
   '/organization': ['Organization Setup'],
@@ -20,6 +22,7 @@ const pathLabels = {
   '/reports': ['Reports & Analytics'],
   '/activity': ['Activity Logs'],
   '/notifications': ['Notifications'],
+  '/profile': ['My Profile'],
 };
 
 const roleLabels = {
@@ -38,6 +41,7 @@ const roleColors = {
 
 export default function Topbar() {
   const { currentRole, setCurrentRole, ROLES, unreadCount, sidebarOpen } = useApp();
+  const { user, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
@@ -112,22 +116,28 @@ export default function Topbar() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button className="flex items-center gap-2 p-1.5 rounded-xl hover:bg-[#F4F7F9] transition-colors">
-              <div className="w-8 h-8 rounded-full bg-[#0F766E] flex items-center justify-center">
-                <span className="text-white text-sm font-semibold">JS</span>
-              </div>
+              {user?.avatar ? (
+                <img src={user.avatar} alt="Profile" className="w-8 h-8 rounded-full object-cover" />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-[#0F766E] flex items-center justify-center">
+                  <span className="text-white text-sm font-semibold">
+                    {user?.name ? user.name.split(' ').map(n => n[0]).join('').toUpperCase() : 'U'}
+                  </span>
+                </div>
+              )}
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-48">
             <DropdownMenuLabel>
-              <p className="text-sm font-medium">James Smith</p>
-              <p className="text-xs text-[#64748B]">james.smith@assetflow.com</p>
+              <p className="text-sm font-medium">{user?.name || 'User'}</p>
+              <p className="text-xs text-[#64748B]">{user?.email || ''}</p>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-sm">
+            <DropdownMenuItem className="text-sm" onClick={() => navigate('/profile')}>
               <User className="w-4 h-4 mr-2" /> Profile
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-sm text-[#DC2626]" onClick={() => navigate('/auth/login')}>
+            <DropdownMenuItem className="text-sm text-[#DC2626]" onClick={() => logout()}>
               <LogOut className="w-4 h-4 mr-2" /> Sign Out
             </DropdownMenuItem>
           </DropdownMenuContent>

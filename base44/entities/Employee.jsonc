@@ -1,25 +1,29 @@
 {
   "properties": {
-    "role": {
-      "type": "string",
-      "description": "The role of the user in the app",
-      "enum": [
-        "admin",
-        "asset_manager",
-        "department_head",
-        "employee"
-      ]
-    },
     "employeeId": {
-      "type": "string",
-      "description": "Enterprise Employee ID"
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
     },
     "phone": {
       "type": "string"
     },
     "department": {
       "type": "string",
-      "description": "Associated Department ID"
+      "description": "Department ID"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "asset_manager",
+        "department_head",
+        "employee"
+      ]
     },
     "status": {
       "type": "string",
@@ -36,8 +40,11 @@
     }
   },
   "required": [
-    "role"
+    "name",
+    "email",
+    "role",
+    "status"
   ],
-  "name": "User",
+  "name": "Employee",
   "type": "object"
 }

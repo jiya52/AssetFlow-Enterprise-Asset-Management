@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Layers, Eye, EyeOff, User, Mail, Phone, Lock } from 'lucide-react';
+import { Layers, User, Mail, Phone, Lock } from 'lucide-react';
 import ImageUpload from '@/components/shared/ImageUpload';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,27 +16,42 @@ const deptOptions = [
   'Administration', 'Training & Development', 'Security',
 ];
 
+import { useAuth } from '@/lib/AuthContext';
+
 export default function AuthSignup() {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { signup } = useAuth();
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
-    fullName: '', email: '', phone: '', department: '', password: '', confirmPassword: '', profileImage: '',
+    fullName: '', email: '', phone: '', department: '', password: '', confirmPassword: '', profileImage: '', role: 'employee',
   });
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     if (form.password !== form.confirmPassword) {
       toast({ title: 'Passwords do not match', variant: 'destructive' });
       return;
     }
     setLoading(true);
-    setTimeout(() => {
-      toast({ title: 'Account created', description: 'You have been registered as an Employee.' });
+    const result = await signup({
+      email: form.email,
+      password: form.password,
+      name: form.fullName,
+      phone: form.phone,
+      department: form.department,
+      avatar: form.profileImage,
+      role: form.role
+    });
+
+    if (result.success) {
+      toast({ title: 'Account created', description: `You have been registered as an ${form.role === 'admin' ? 'Admin' : 'Employee'}.` });
       navigate('/auth/login');
-      setLoading(false);
-    }, 1000);
+    } else {
+      toast({ title: 'Signup failed', description: result.message || 'An error occurred.', variant: 'destructive' });
+    }
+    setLoading(false);
   };
 
   return (
@@ -76,9 +91,36 @@ export default function AuthSignup() {
           </div>
 
           <h2 className="text-2xl font-bold text-[#0F172A]">Create Account</h2>
-          <p className="text-sm text-[#64748B] mt-1 mb-6">Sign up as an Employee</p>
+          <p className="text-sm text-[#64748B] mt-1 mb-4">Register new access for AssetFlow</p>
 
           <form onSubmit={handleSignup} className="space-y-4">
+            <div>
+              <Label>Sign up as</Label>
+              <div className="grid grid-cols-2 gap-2 mt-1 mb-2">
+                <button
+                  type="button"
+                  onClick={() => setForm(f => ({ ...f, role: 'employee' }))}
+                  className={`py-2 px-3 rounded-xl border text-sm font-medium transition-all ${
+                    form.role === 'employee'
+                      ? 'border-[#0F766E] bg-[#0F766E]/5 text-[#0F766E]'
+                      : 'border-[#DCE5EA] bg-white text-[#64748B] hover:bg-[#F4F7F9]'
+                  }`}
+                >
+                  Employee
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setForm(f => ({ ...f, role: 'admin' }))}
+                  className={`py-2 px-3 rounded-xl border text-sm font-medium transition-all ${
+                    form.role === 'admin'
+                      ? 'border-[#0F766E] bg-[#0F766E]/5 text-[#0F766E]'
+                      : 'border-[#DCE5EA] bg-white text-[#64748B] hover:bg-[#F4F7F9]'
+                  }`}
+                >
+                  Admin
+                </button>
+              </div>
+            </div>
             <div>
               <Label>Full Name</Label>
               <div className="relative mt-1">

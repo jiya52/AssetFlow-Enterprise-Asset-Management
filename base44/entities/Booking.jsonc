@@ -1,0 +1,46 @@
+{
+  "properties": {
+    "resource": {
+      "type": "string",
+      "description": "Asset ID"
+    },
+    "bookedBy": {
+      "type": "string",
+      "description": "User ID"
+    },
+    "date": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string"
+    },
+    "endTime": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "number"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "upcoming",
+        "ongoing",
+        "completed",
+        "cancelled"
+      ]
+    }
+  },
+  "required": [
+    "resource",
+    "bookedBy",
+    "date",
+    "startTime",
+    "endTime",
+    "status"
+  ],
+  "name": "Booking",
+  "type": "object"
+}

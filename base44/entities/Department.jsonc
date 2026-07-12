@@ -1,0 +1,35 @@
+{
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "head": {
+      "type": "string",
+      "description": "User ID of the department head"
+    },
+    "parent": {
+      "type": "string",
+      "description": "Parent Department ID"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive"
+      ]
+    },
+    "employeeCount": {
+      "type": "integer"
+    },
+    "code": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "status",
+    "code"
+  ],
+  "name": "Department",
+  "type": "object"
+}

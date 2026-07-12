@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useApp } from '@/contexts/AppContext';
 import PageHeader from '@/components/shared/PageHeader';
 import StatusBadge from '@/components/shared/StatusBadge';
@@ -9,10 +8,10 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus, X, Package, MapPin, Calendar, DollarSign, FileText, Clock } from 'lucide-react';
+import { Plus, Package, MapPin, Calendar, DollarSign, FileText } from 'lucide-react';
 
 export default function Assets() {
-  const { assets, categories, departments, maintenance } = useApp();
+  const { assets, categories, maintenance } = useApp();
   const [statusFilter, setStatusFilter] = useState('all');
   const [catFilter, setCatFilter] = useState('all');
   const [selectedAsset, setSelectedAsset] = useState(null);

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { useApp } from '@/contexts/AppContext';
 import PageHeader from '@/components/shared/PageHeader';
 import DataTable from '@/components/shared/DataTable';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Download, ScrollText } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 export default function ActivityLogs() {
   const { logs } = useApp();

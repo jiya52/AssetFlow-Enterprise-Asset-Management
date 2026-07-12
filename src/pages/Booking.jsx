@@ -11,10 +11,10 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
-import { Plus, CalendarDays, Clock, AlertTriangle, X, Edit } from 'lucide-react';
+import { Plus, AlertTriangle, X } from 'lucide-react';
 
 export default function Booking() {
-  const { bookings, setBookings, assets, employees, departments, addLog, addNotification } = useApp();
+  const { bookings, setBookings, assets, departments, addLog, addNotification } = useApp();
   const { toast } = useToast();
   const [bookDialog, setBookDialog] = useState(false);
   const [statusFilter, setStatusFilter] = useState('all');
@@ -99,7 +99,6 @@ export default function Booking() {
   ];
 
   // Simple calendar view - current month days
-  const today = new Date('2026-07-12');
   const daysInMonth = new Date(2026, 7, 0).getDate();
   const firstDayOfWeek = new Date(2026, 6, 1).getDay();
   const calendarDays = Array.from({ length: 42 }, (_, i) => {

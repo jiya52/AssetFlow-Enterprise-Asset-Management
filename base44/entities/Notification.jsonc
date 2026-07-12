@@ -1,0 +1,32 @@
+{
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "User ID receiving notification"
+    },
+    "type": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "read": {
+      "type": "boolean"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "relatedId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "userId",
+    "type",
+    "message",
+    "read",
+    "timestamp"
+  ],
+  "name": "Notification",
+  "type": "object"
+}

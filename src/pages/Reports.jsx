@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useApp } from '@/contexts/AppContext';
 import PageHeader from '@/components/shared/PageHeader';
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Download, Printer, FileText, FileSpreadsheet } from 'lucide-react';
+import { Printer, FileText, FileSpreadsheet } from 'lucide-react';
 import {
   PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip,
-  ResponsiveContainer, CartesianGrid, Legend, LineChart, Line, AreaChart, Area
+  ResponsiveContainer, CartesianGrid, Legend, AreaChart, Area
 } from 'recharts';
 
 const COLORS = ['#0F766E', '#059669', '#475569', '#D97706', '#64748B', '#DC2626', '#94A3B8', '#0E6B64'];
 
 export default function Reports() {
   const { assets, bookings, maintenance, departments, categories } = useApp();
-  const [reportType, setReportType] = useState('utilization');
 
   // Asset Utilization
   const utilizationData = categories.map(c => {

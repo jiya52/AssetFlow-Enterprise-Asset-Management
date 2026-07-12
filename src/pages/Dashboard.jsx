@@ -4,10 +4,9 @@ import { useApp } from '@/contexts/AppContext';
 import { Link } from 'react-router-dom';
 import KPICard from '@/components/shared/KPICard';
 import PageHeader from '@/components/shared/PageHeader';
-import StatusBadge from '@/components/shared/StatusBadge';
 import {
   Package, Users, Wrench, CalendarDays, ArrowLeftRight, Clock,
-  Plus, BookOpen, AlertTriangle, Activity
+  Plus, BookOpen, Activity
 } from 'lucide-react';
 import {
   PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip,
